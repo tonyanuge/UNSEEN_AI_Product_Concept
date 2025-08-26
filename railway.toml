@@ -1,0 +1,30 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10
+
+[[services]]
+name = "unseen-api"
+source = "apps/api"
+
+[services.build]
+buildCommand = "npm run build"
+startCommand = "npm start"
+
+[services.variables]
+NODE_ENV = "production"
+PORT = "3001"
+
+[[services]]
+name = "unseen-web" 
+source = "apps/web"
+
+[services.build]
+buildCommand = "npm run build"
+startCommand = "npm start"
+
+[services.variables]
+NODE_ENV = "production"
+PORT = "3000"
